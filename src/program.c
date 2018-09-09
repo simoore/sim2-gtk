@@ -38,8 +38,8 @@ program_new (Statement *statement, GHashTable *vars)
 void
 program_free (Program *program)
 {
-	if (program == NULL)
-		return;
+    if (program == NULL)
+        return;
     program_free_statement (program->statement);
     g_hash_table_destroy (program->variables);
     g_free (program);
@@ -274,8 +274,8 @@ program_free_identifier (Identifier *identifier)
 static int
 program_execute_identifier (Identifier *identifier)
 {
-	GRand *random;
-	int number;
+    GRand *random;
+    int number;
 
     switch (identifier->type)
     {
@@ -288,9 +288,9 @@ program_execute_identifier (Identifier *identifier)
         case DAILY_REST:
             return daily_rest;
         case RAND:
-			random = g_rand_new ();
-			number = g_rand_int_range (random, 0, 1000);
-			g_rand_free (random);
+            random = g_rand_new ();
+            number = g_rand_int_range (random, 0, 1000);
+            g_rand_free (random);
             return number;
     } 
 }

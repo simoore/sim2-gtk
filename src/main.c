@@ -37,8 +37,8 @@ app_iteration (gpointer user_data)
     if (run == TRUE)
     {
         sim_iteration ();
-		sim_check ();
-		gtk_widget_queue_draw (drawing_area);
+        sim_check ();
+        gtk_widget_queue_draw (drawing_area);
     }
     return run;
 }
@@ -53,11 +53,11 @@ app_iteration (gpointer user_data)
 static void
 app_play (GtkWidget *widget, gpointer user_data)
 {
-	if (run == FALSE)
-	{
-    	run = TRUE;
-    	g_timeout_add (1000, app_iteration, NULL);
-	}
+    if (run == FALSE)
+    {
+        run = TRUE;
+        g_timeout_add (1000, app_iteration, NULL);
+    }
 }
 
 /*******************************************************************************
@@ -90,24 +90,24 @@ app_config (GtkWidget *widget, gpointer user_data)
     Program *prey;
     Program *pred;
     const char *error_message;
-	const char *prey_num_str;
-	const char *pred_num_str;
+    const char *prey_num_str;
+    const char *pred_num_str;
     
     pred_file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (pred_file_btn));
     prey_file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (prey_file_btn));
     prey = compiler_get_program (prey_file);
     pred = compiler_get_program (pred_file);
 
-	prey_num_str = gtk_entry_get_text (GTK_ENTRY (prey_num_entry));
-	pred_num_str = gtk_entry_get_text (GTK_ENTRY (pred_num_entry));
-	
-	// TODO: check if pred and prey are actually numbers
+    prey_num_str = gtk_entry_get_text (GTK_ENTRY (prey_num_entry));
+    pred_num_str = gtk_entry_get_text (GTK_ENTRY (pred_num_entry));
+    
+    // TODO: check if pred and prey are actually numbers
     
     if (prey != NULL && pred != NULL)
     {
         run = FALSE;
         sim_reset (prey, pred, atoi (prey_num_str), atoi (pred_num_str));
-		gtk_widget_queue_draw (drawing_area);
+        gtk_widget_queue_draw (drawing_area);
     }
     else
     {
@@ -246,7 +246,7 @@ main (int argc, char *argv[])
     app = gtk_application_new ("org.steve.sim2app", G_APPLICATION_FLAGS_NONE);
     g_signal_connect (app, "activate", G_CALLBACK (app_activate), NULL);
     g_application_run (G_APPLICATION (app), argc, argv);
-	simulation_free ();
-	return 0;
+    simulation_free ();
+    return 0;
 }
 
